@@ -1,0 +1,59 @@
+.sync-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sync-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sync-icon {
+  font-size: 1.2rem;
+  animation: spin 1s linear infinite;
+}
+
+.sync-icon:not(.syncing) {
+  animation: none;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.sync-text {
+  font-size: 1rem;
+  color: white;
+  font-weight: 500;
+}
+
+.last-sync {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.manual-sync-button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.manual-sync-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.manual-sync-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
