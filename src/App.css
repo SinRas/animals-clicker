@@ -3,6 +3,7 @@
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
 .app-header {
@@ -20,6 +21,20 @@
   font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 0;
+}
+
+/* ClickCounter positioned in top right corner */
+.click-counter {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .app-main {
@@ -88,5 +103,12 @@
   
   .stats-section {
     padding: 1.5rem;
+  }
+  
+  /* Adjust ClickCounter for mobile */
+  .click-counter {
+    top: 1rem;
+    right: 1rem;
+    padding: 1rem;
   }
 }

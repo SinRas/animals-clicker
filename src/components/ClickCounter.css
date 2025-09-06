@@ -1,27 +1,57 @@
 .click-counter {
   text-align: center;
+  min-width: 160px;
 }
 
-.counter-label {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 0.5rem;
-  font-weight: 500;
+.animal-counts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.counter-value {
-  font-size: 2.5rem;
-  font-weight: 700;
+.animal-count {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 0.8rem;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.animal-emoji {
+  font-size: 1.2rem;
   color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(45deg, #ffd700, #ffed4e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+}
+
+.animal-count-number {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
+  min-width: 30px;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
-  .counter-value {
-    font-size: 2rem;
+  .click-counter {
+    min-width: 140px;
+  }
+  
+  .animal-count {
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .animal-emoji {
+    font-size: 1rem;
+    
+  }
+  
+  .animal-count-number {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.4rem;
+    min-width: 25px;
   }
 }

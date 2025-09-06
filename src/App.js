@@ -71,6 +71,8 @@ function App() {
 
   return (
     <div className="app">
+      <ClickCounter clicks={clicks} />
+      
       <header className="app-header">
         <h1>Animals Clicker</h1>
         <p>Click on the animals below to count your clicks!</p>
@@ -86,15 +88,6 @@ function App() {
               onClick={() => handleAnimalClick(animal.id)}
             />
           ))}
-        </div>
-
-        <div className="stats-section">
-          <ClickCounter totalClicks={totalClicks} />
-          <SyncStatus 
-            status={syncStatus} 
-            lastSync={lastSync}
-            onManualSync={handleSync}
-          />
         </div>
         
       </main>
