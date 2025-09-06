@@ -9,10 +9,7 @@ import { syncWithServer } from './services/syncService';
 const ANIMALS = [
   { id: 'cat', name: 'Cat', emoji: '🐱' },
   { id: 'dog', name: 'Dog', emoji: '🐶' },
-  { id: 'rabbit', name: 'Rabbit', emoji: '🐰' },
-  { id: 'bird', name: 'Bird', emoji: '🐦' },
-  { id: 'fish', name: 'Fish', emoji: '🐠' },
-  { id: 'butterfly', name: 'Butterfly', emoji: '🦋' }
+  { id: 'rabbit', name: 'Rabbit', emoji: '🐰' }
 ];
 
 function App() {
@@ -75,7 +72,7 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>🐾 Animals Clicker</h1>
+        <h1>Animals Clicker</h1>
         <p>Click on the animals below to count your clicks!</p>
       </header>
 
@@ -99,10 +96,7 @@ function App() {
             onManualSync={handleSync}
           />
         </div>
-
-        <button className="reset-button" onClick={resetClicks}>
-          Reset All Clicks
-        </button>
+        
       </main>
     </div>
   );
