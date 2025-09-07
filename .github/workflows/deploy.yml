@@ -1,0 +1,43 @@
+name: Build and Deploy
+
+# This workflow runs on any push to the main branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    # Use the latest version of Ubuntu for the job environment
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Check out your repository code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js for the build process
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22' # Use a version that matches your project
+
+      # Step 3: Install dependencies and build the static files
+      - name: Install and Build
+        run: |
+          npm ci
+          npm run build
+
+      # Step 4: Deploy the build folder to your Droplet
+      - name: Deploy to DigitalOcean
+        uses: easingthemes/ssh-deploy@v5
+        with:
+          # The private key we stored in GitHub Secrets
+          SSH_PRIVATE_KEY: ${{ secrets.DO_SSH_PRIVATE_KEY }}
+          # The source directory on the runner to copy from
+          SOURCE: "build/"
+          # The user and host of the remote server (from GitHub Secrets)
+          REMOTE_HOST: ${{ secrets.DO_HOST }}
+          REMOTE_USER: ${{ secrets.DO_USERNAME }}
+          # The destination directory on the server
+          # This should match the 'root' in your Nginx config
+          TARGET: "/root/animals-clicker/"
