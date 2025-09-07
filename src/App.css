@@ -41,18 +41,6 @@
   margin-bottom: 2rem;
 }
 
-.stats-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
 .reset-button {
   background: linear-gradient(45deg, #ff6b6b, #ee5a24);
   color: white;
