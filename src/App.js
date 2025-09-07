@@ -71,7 +71,15 @@ function App() {
 
   return (
     <div className="app">
-      <ClickCounter clicks={clicks} />
+      <div className="click-counter">
+        <div className="animal-counts">
+          {ANIMALS.map(animal => (
+            <ClickCounter 
+            clickCount={clicks[animal.id] || 0} 
+            animal={animal} />
+          ))}
+        </div>
+      </div>
       
       <header className="app-header">
         <h1>Animals Clicker</h1>
