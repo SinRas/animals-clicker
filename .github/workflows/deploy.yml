@@ -40,4 +40,4 @@ jobs:
           REMOTE_USER: ${{ secrets.DO_USERNAME }}
           # The destination directory on the server
           # This should match the 'root' in your Nginx config
-          TARGET: "/root/animals-clicker/"
+          TARGET: "/var/www/animals-clicker/"
