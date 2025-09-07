@@ -13,11 +13,11 @@ jobs:
     steps:
       # Step 1: Check out your repository code
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Step 2: Set up Node.js for the build process
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '22' # Use a version that matches your project
 
@@ -29,7 +29,7 @@ jobs:
 
       # Step 4: Deploy the build folder to your Droplet
       - name: Deploy to DigitalOcean
-        uses: easingthemes/ssh-deploy@v5
+        uses: easingthemes/ssh-deploy@v5.1.0
         with:
           # The private key we stored in GitHub Secrets
           SSH_PRIVATE_KEY: ${{ secrets.DO_SSH_PRIVATE_KEY }}
