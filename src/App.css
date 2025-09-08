@@ -1,3 +1,6 @@
+:root {
+  --border: 1px solid rgba(255, 255, 255, 0.2);
+}
 .app {
   text-align: center;
   padding: 2rem;
@@ -23,19 +26,7 @@
   margin-bottom: 0;
 }
 
-/* ClickCounter positioned in top right corner */
-.click-counter {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
+
 
 .app-main {
   display: flex;
@@ -51,18 +42,6 @@
   width: 100%;
   max-width: 800px;
   margin-bottom: 2rem;
-}
-
-.stats-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .reset-button {
