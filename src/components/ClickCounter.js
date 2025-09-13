@@ -9,7 +9,7 @@ const ANIMALS = [
 
 const ClickCounter = ({ clicks }) => {
   return (
-    <div className="click-counter">
+    <>
       <div className="animal-counts">
         {ANIMALS.map(animal => (
           <div key={animal.id} className="animal-count">
@@ -18,7 +18,7 @@ const ClickCounter = ({ clicks }) => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
