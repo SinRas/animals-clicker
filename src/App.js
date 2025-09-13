@@ -70,7 +70,7 @@ function App() {
   };
 
   return (
-    <main class="">
+    <main class="app">
       <secetion class="click-counter">
         <ClickCounter clicks={clicks} />
       </secetion>
