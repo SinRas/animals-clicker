@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import AnimalIcon from './components/AnimalIcon';
-import ClickCounter from './components/ClickCounter';
-import SyncStatus from './components/SyncStatus';
-import { useLocalStorage } from './hooks/useLocalStorage';
-import { syncWithServer } from './services/syncService';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import AnimalIcon from "./components/AnimalIcon";
+import ClickCounter from "./components/ClickCounter";
+import SyncStatus from "./components/SyncStatus";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+import { syncWithServer } from "./services/syncService";
 
 const ANIMALS = [
-  { id: 'cat', name: 'Cat', emoji: '🐱' },
-  { id: 'dog', name: 'Dog', emoji: '🐶' },
-  { id: 'rabbit', name: 'Rabbit', emoji: '🐰' }
+  { id: "cat", name: "Cat", emoji: "🐱" },
+  { id: "dog", name: "Dog", emoji: "🐶" },
+  { id: "rabbit", name: "Rabbit", emoji: "🐰" },
 ];
 
 function App() {
-  const [clicks, setClicks] = useLocalStorage('animalClicks', {});
+  const [clicks, setClicks] = useLocalStorage("animalClicks", {});
   const [totalClicks, setTotalClicks] = useState(0);
   const [lastSync, setLastSync] = useState(null);
-  const [syncStatus, setSyncStatus] = useState('idle'); // 'idle', 'syncing', 'success', 'error'
+  const [syncStatus, setSyncStatus] = useState("idle"); // 'idle', 'syncing', 'success', 'error'
 
   // Calculate total clicks whenever clicks change
   useEffect(() => {
@@ -42,25 +42,25 @@ function App() {
   }, [clicks]);
 
   const handleAnimalClick = (animalId) => {
-    setClicks(prevClicks => ({
+    setClicks((prevClicks) => ({
       ...prevClicks,
-      [animalId]: (prevClicks[animalId] || 0) + 1
+      [animalId]: (prevClicks[animalId] || 0) + 1,
     }));
   };
 
   const handleSync = async () => {
-    setSyncStatus('syncing');
+    setSyncStatus("syncing");
     try {
       const result = await syncWithServer(clicks);
       if (result.success) {
         setLastSync(new Date());
-        setSyncStatus('success');
+        setSyncStatus("success");
       } else {
-        setSyncStatus('error');
+        setSyncStatus("error");
       }
     } catch (error) {
-      console.error('Sync failed:', error);
-      setSyncStatus('error');
+      console.error("Sync failed:", error);
+      setSyncStatus("error");
     }
   };
 
@@ -70,17 +70,23 @@ function App() {
   };
 
   return (
-    <main class="app">
-      <secetion class="click-counter">
-        <ClickCounter clicks={clicks} />
-      </secetion>
-      <secetion class="app-header">
+    <main className="app">
+      <section className="click-counter">
+        {ANIMALS.map((animal) => (
+          <ClickCounter
+            key={animal.id}
+            clickCount={clicks[animal.id]}
+            animal={animal}
+          />
+        ))}
+      </section>
+      <section className="app-header">
         <h1>Animals Clicker</h1>
         <p>Click on the animals below to count your clicks!</p>
-      </secetion>
-      <secetion class="app-main">
-         <div className="animals-grid">
-          {ANIMALS.map(animal => (
+      </section>
+      <section className="app-main">
+        <div className="animals-grid">
+          {ANIMALS.map((animal) => (
             <AnimalIcon
               key={animal.id}
               animal={animal}
@@ -89,7 +95,7 @@ function App() {
             />
           ))}
         </div>
-      </secetion>
+      </section>
     </main>
   );
 }

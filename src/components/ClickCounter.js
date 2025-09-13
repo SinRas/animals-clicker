@@ -4,13 +4,11 @@ import './ClickCounter.css';
 const ClickCounter = ({ clickCount, animal }) => {
   return (
     <>
-      <div className="animal-counts">
-        {ANIMALS.map(animal => (
+      <div className="animal-counts">     
           <div key={animal.id} className="animal-count">
             <span className="animal-emoji">{animal.emoji + ` ${animal.name} `}</span>
             <span className="animal-count-number">{clickCount}</span>
           </div>
-        ))}
       </div>
     </>
   );
