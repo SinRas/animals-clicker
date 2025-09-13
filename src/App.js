@@ -74,7 +74,7 @@ function App() {
       <secetion class="click-counter">
         <ClickCounter clicks={clicks} />
       </secetion>
-      <secetion class="">
+      <secetion class="app-header">
         <h1>Animals Clicker</h1>
         <p>Click on the animals below to count your clicks!</p>
       </secetion>
