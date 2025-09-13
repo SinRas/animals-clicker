@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import AnimalIcon from './components/AnimalIcon';
 import ClickCounter from './components/ClickCounter';
-import SyncStatus from './components/SyncStatus';
 import { useLocalStorage } from './hooks/useLocalStorage';
-import { syncWithServer } from './services/syncService';
+import { sendAnimalClick } from './services/syncService';
 
 const ANIMALS = [
   { id: 'cat', name: 'Cat', emoji: '🐱' },
@@ -15,8 +14,6 @@ const ANIMALS = [
 function App() {
   const [clicks, setClicks] = useLocalStorage('animalClicks', {});
   const [totalClicks, setTotalClicks] = useState(0);
-  const [lastSync, setLastSync] = useState(null);
-  const [syncStatus, setSyncStatus] = useState('idle'); // 'idle', 'syncing', 'success', 'error'
 
   // Calculate total clicks whenever clicks change
   useEffect(() => {
@@ -24,43 +21,19 @@ function App() {
     setTotalClicks(total);
   }, [clicks]);
 
-  // Set up automatic sync every 13 seconds
-  useEffect(() => {
-    const syncInterval = setInterval(async () => {
-      await handleSync();
-    }, 13000); // 13 seconds
-
-    // Initial sync after 1 second
-    const initialSync = setTimeout(() => {
-      handleSync();
-    }, 1000);
-
-    return () => {
-      clearInterval(syncInterval);
-      clearTimeout(initialSync);
-    };
-  }, [clicks]);
-
-  const handleAnimalClick = (animalId) => {
+  const handleAnimalClick = async (animalId) => {
+    // Update local state immediately for responsive UI
     setClicks(prevClicks => ({
       ...prevClicks,
       [animalId]: (prevClicks[animalId] || 0) + 1
     }));
-  };
 
-  const handleSync = async () => {
-    setSyncStatus('syncing');
+    // Send click to server
     try {
-      const result = await syncWithServer(clicks);
-      if (result.success) {
-        setLastSync(new Date());
-        setSyncStatus('success');
-      } else {
-        setSyncStatus('error');
-      }
+      await sendAnimalClick(animalId);
     } catch (error) {
-      console.error('Sync failed:', error);
-      setSyncStatus('error');
+      console.error('Failed to send click to server:', error);
+      // Optionally show user feedback for failed server communication
     }
   };
 
@@ -75,6 +48,7 @@ function App() {
         <div className="animal-counts">
           {ANIMALS.map(animal => (
             <ClickCounter 
+            key={animal.id}
             clickCount={clicks[animal.id] || 0} 
             animal={animal} />
           ))}
