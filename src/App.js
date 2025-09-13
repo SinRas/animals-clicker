@@ -72,7 +72,10 @@ function App() {
   return (
     <main class="">
       <secetion class=""></secetion>
-      <secetion class=""></secetion>
+      <secetion class="">
+        <h1>Animals Clicker</h1>
+        <p>Click on the animals below to count your clicks!</p>
+      </secetion>
       <secetion class=""></secetion>
     </main>
   );
