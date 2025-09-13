@@ -70,7 +70,9 @@ function App() {
   };
 
   return (
-
+    <>
+      <main class=""></main>
+    </>
   );
 }
 
