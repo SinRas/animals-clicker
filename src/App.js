@@ -70,9 +70,11 @@ function App() {
   };
 
   return (
-    <>
-      <main class=""></main>
-    </>
+    <main class="">
+      <secetion class=""></secetion>
+      <secetion class=""></secetion>
+      <secetion class=""></secetion>
+    </main>
   );
 }
 
