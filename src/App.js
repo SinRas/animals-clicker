@@ -78,7 +78,18 @@ function App() {
         <h1>Animals Clicker</h1>
         <p>Click on the animals below to count your clicks!</p>
       </secetion>
-      <secetion class=""></secetion>
+      <secetion class="app-main">
+         <div className="animals-grid">
+          {ANIMALS.map(animal => (
+            <AnimalIcon
+              key={animal.id}
+              animal={animal}
+              clickCount={clicks[animal.id] || 0}
+              onClick={() => handleAnimalClick(animal.id)}
+            />
+          ))}
+        </div>
+      </secetion>
     </main>
   );
 }
