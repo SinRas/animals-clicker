@@ -70,8 +70,8 @@ function App() {
   };
 
   return (
-    <main className="app">
-      <section className="click-counter">
+    <main>
+      <section className="global-stats">
         {ANIMALS.map((animal) => (
           <ClickCounter
             key={animal.id}
@@ -80,12 +80,12 @@ function App() {
           />
         ))}
       </section>
-      <section className="app-header">
+      <section className="app-content">
         <h1>Animals Clicker</h1>
         <p>Click on the animals below to count your clicks!</p>
       </section>
-      <section className="app-main">
-        <div className="animals-grid">
+      <section className="local-stats">
+        <div className="local-stats-grid">
           {ANIMALS.map((animal) => (
             <AnimalIcon
               key={animal.id}
