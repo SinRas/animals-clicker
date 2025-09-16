@@ -5,3 +5,60 @@ main {
   min-height: 100dvh;
   place-content: center;
 }
+.global-stats,
+.app-content,
+.local-stats {
+  grid-column: span 3; /* Full width for mobile */
+}
+
+.global-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: end;
+  place-content: end;
+  padding: 2rem 1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.2);
+}
+/* End of Website Section. */
+.app-content > * {
+  color: white;
+}
+.app-content h1 {
+  margin: 0rem;
+  padding: 0rem;
+  font-size: 1.875rem; /* 30px */
+  line-height: 1.5; /* 36px */
+  letter-spacing: 0.1rem;
+}
+.app-content p {
+  margin: 0rem;
+  padding: 0rem;
+  font-size: 1rem; /* 48px */
+  line-height: 1.5;
+}
+/* End of Website Section. */
+.local-stats {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+}
+/* End of Website Section. */
+/* Find Animal Icon Inside Animal Icon CSS. */
+
+@media (min-width: 768px) {
+  main {
+    max-width: 70%;
+    margin: 0rem auto;
+  }
+  .global-stats {
+    grid-column-start: 3;
+  }
+  .app-content {
+    grid-column: span 3;
+  }
+  .local-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
