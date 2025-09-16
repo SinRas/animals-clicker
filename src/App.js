@@ -87,7 +87,6 @@ function App() {
       <section className="local-stats">
           {ANIMALS.map((animal) => (
             <AnimalIcon
-              key={animal.id}
               animal={animal}
               clickCount={clicks[animal.id] || 0}
               onClick={() => handleAnimalClick(animal.id)}
