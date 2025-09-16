@@ -85,7 +85,6 @@ function App() {
         <p>Click on the animals below to count your clicks!</p>
       </section>
       <section className="local-stats">
-        <div className="local-stats-grid">
           {ANIMALS.map((animal) => (
             <AnimalIcon
               key={animal.id}
@@ -94,7 +93,6 @@ function App() {
               onClick={() => handleAnimalClick(animal.id)}
             />
           ))}
-        </div>
       </section>
     </main>
   );
