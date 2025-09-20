@@ -1,3 +1,5 @@
+https://animals-clicker.com/
+
 # 🐾 Animals Clicker
 
 A React-based clicker game where users can click on animal icons and track their progress. The app stores click data in local storage and syncs with a server every 13 seconds.
