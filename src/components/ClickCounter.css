@@ -1,27 +1,3 @@
-/* ClickCounter positioned in top right corner */
-.click-counter {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 1.5rem;
-  border: var(--border);
-}
-
-.click-counter {
-  text-align: center;
-  min-width: 210px;
-}
-
-.animal-counts {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
 .animal-count {
   display: flex;
   align-items: center;
