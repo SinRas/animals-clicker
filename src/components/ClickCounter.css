@@ -8,7 +8,7 @@
   border: var(--border);
 }
 
-.animal-emoji {
+.animal-count .animal-emoji {
   font-size: 1.2rem;
   color: black;
 }

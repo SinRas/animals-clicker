@@ -6,7 +6,6 @@ main {
   place-content: center;
 }
 .global-stats,
-.app-content,
 .local-stats {
   grid-column: span 3; /* Full width for mobile */
 }
