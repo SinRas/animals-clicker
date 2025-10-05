@@ -21,6 +21,21 @@ main {
   background: rgba(255, 255, 255, 0.2);
 }
 /* End of Website Section. */
+.app-content > * {
+  color: black;
+  margin: 0rem;
+  padding: 0rem;
+  line-height: 1.5;
+}
+.app-content h1 {
+  font-size: 1.875rem; /* 30px */
+  line-height: 1.5; /* 36px */
+  letter-spacing: 0.1rem;
+}
+.app-content p {
+  font-size: 1rem; /* 48px */
+}
+/* End of Website Section. */
 .local-stats {
   display: grid;
   gap: 1rem;

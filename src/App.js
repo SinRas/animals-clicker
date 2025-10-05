@@ -79,6 +79,10 @@ function App() {
           />
         ))}
       </section>
+      <section className="app-content">
+        <h1>Animals Clicker</h1>
+        <p>Click on the animals below to count your clicks!</p>
+      </section>
       <section className="local-stats">
           {ANIMALS.map((animal) => (
             <AnimalIcon
