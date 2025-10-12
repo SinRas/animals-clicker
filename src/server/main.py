@@ -7,41 +7,46 @@ from sqlalchemy.orm import Session, Mapped, DeclarativeBase, mapped_column
 
 app = Flask(__name__)
 animal_list = ["dog", "cat", "rabbit"]
+engine = create_engine("sqlite:///animalsclicker.db", echo=True)
 
 def initialize_rows():
-    engine = create_engine("sqlite://", echo=True)
+    Base.metadata.create_all(engine)
     with Session(engine) as session:
         for animal_name in animal_list:
-            if (not(select(AnimalClick).where(AnimalClick.animal==animal_name))):
-                animal = AnimalClick(
+            stmt = select(AnimalClick).where(AnimalClick.animal==animal_name)
+            if session.scalars(stmt).first() == None:
+                newRow = AnimalClick(
                     animal = animal_name,
                     count = 0
                 )
-                session.add_all(animal)
-        print(session.query(AnimalClick).count())
-    print("sth")
-        # select(AnimalClick).where(AnimalClick.animal.in_(animal_list))
+                session.add(newRow)
+                session.commit()
 
+# example request body
+# {
+# 	"cat":1,
+# 	"dog":1,
+# 	"rabbit":0
+# }
 @app.post("/click")
 def click_post():
     data = request.json
-    engine = create_engine("sqlite://", echo=True)
-
     with Session(engine) as session:
         for animal_name in animal_list:
-            #session.query(AnimalClick).filter
-            print(animal_name)
-            animal_click = select(AnimalClick).where(AnimalClick.animal==animal_name)
-            animal_click.count += data.get(animal_name)
+            stmt = select(AnimalClick).where(AnimalClick.animal==animal_name)
+            row = session.scalars(stmt).first()
+            row.count += data.get(animal_name)
             session.commit()
 
-    return str(data.get("dog"))
+    return click_get()
 
 @app.get("/click")
 def click_get():
     with Session(engine) as session:
-        animal_click = select(AnimalClick).where(AnimalClick.animal.in_(animal_list))
-
+        stmt = select(AnimalClick).where(AnimalClick.animal.in_(animal_list))
+        rows = session.scalars(stmt).all()
+        result = { r.animal: r.count for r in rows}
+    return json.dumps(result)
 
 class Base(DeclarativeBase):
     pass
