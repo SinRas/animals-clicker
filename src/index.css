@@ -2,6 +2,7 @@
   --font-sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+  --bg-whitesmoke: whitesmoke;
 }
 *,
 *::after,
@@ -13,6 +14,6 @@
 }
 
 body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--bg-whitesmoke);
   min-height: 100vh;
 }

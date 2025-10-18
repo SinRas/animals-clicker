@@ -8,15 +8,15 @@
   border: var(--border);
 }
 
-.animal-emoji {
+.animal-count .animal-emoji {
   font-size: 1.2rem;
-  color: white;
+  color: black;
 }
 
 .animal-count-number {
   font-size: 1rem;
   font-weight: 600;
-  color: white;
+  color: black;
   background: rgba(255, 255, 255, 0.2);
   padding: 0.2rem 0.6rem;
   border-radius: 10px;

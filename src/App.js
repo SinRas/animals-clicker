@@ -74,7 +74,6 @@ function App() {
       <section className="global-stats">
         {ANIMALS.map((animal) => (
           <ClickCounter
-            key={animal.id}
             clickCount={clicks[animal.id]}
             animal={animal}
           />
