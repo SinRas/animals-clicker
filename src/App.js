@@ -14,59 +14,31 @@ const ANIMALS = [
 
 function App() {
   const [clicks, setClicks] = useLocalStorage("animalClicks", {});
-  const [totalClicks, setTotalClicks] = useState(0);
-  const [lastSync, setLastSync] = useState(null);
-  const [syncStatus, setSyncStatus] = useState("idle"); // 'idle', 'syncing', 'success', 'error'
-
-  // Calculate total clicks whenever clicks change
-  useEffect(() => {
-    const total = Object.values(clicks).reduce((sum, count) => sum + count, 0);
-    setTotalClicks(total);
-  }, [clicks]);
-
+  const [totalClicks, setTotalClicks] = useState({});
+  
   // Set up automatic sync every 13 seconds
   useEffect(() => {
-    const syncInterval = setInterval(async () => {
-      await handleSync();
-    }, 13000); // 13 seconds
+    const counter = setInterval(async () => {
+      await updateTotalClicksAsync();
+    }, 13000);
 
-    // Initial sync after 1 second
-    const initialSync = setTimeout(() => {
-      handleSync();
-    }, 1000);
+    updateTotalClicksAsync()
+    return () => clearInterval(counter);
+     }, []);
 
-    return () => {
-      clearInterval(syncInterval);
-      clearTimeout(initialSync);
-    };
-  }, [clicks]);
-
-  const handleAnimalClick = (animalId) => {
+  const handleAnimalClick = async (animalId) => {
     setClicks((prevClicks) => ({
       ...prevClicks,
       [animalId]: (prevClicks[animalId] || 0) + 1,
     }));
+
+    const response = await fetch("/click", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ [animalId]: 1 }) });
+    setTotalClicks(await response.json());
   };
 
-  const handleSync = async () => {
-    setSyncStatus("syncing");
-    try {
-      const result = await syncWithServer(clicks);
-      if (result.success) {
-        setLastSync(new Date());
-        setSyncStatus("success");
-      } else {
-        setSyncStatus("error");
-      }
-    } catch (error) {
-      console.error("Sync failed:", error);
-      setSyncStatus("error");
-    }
-  };
-
-  const resetClicks = () => {
-    setClicks({});
-    setTotalClicks(0);
+  const updateTotalClicksAsync = async () => {
+    const response = await fetch("/click", { method: "GET" });
+    setTotalClicks(await response.json())
   };
 
   return (
@@ -74,7 +46,7 @@ function App() {
       <section className="global-stats">
         {ANIMALS.map((animal) => (
           <ClickCounter
-            clickCount={clicks[animal.id]}
+            clickCount={totalClicks[animal.id] || 0}
             animal={animal}
           />
         ))}
