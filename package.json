@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A React-based animals clicker game with local storage and server sync",
   "main": "index.js",
+  "proxy": "http://127.0.0.1:5000",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
