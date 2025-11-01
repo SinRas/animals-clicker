@@ -1,10 +1,11 @@
 # ---- build stage ----
 FROM node:20-alpine AS build
-WORKDIR /app
 
 # Leverage Docker layer caching
-COPY package.json .
-COPY package-lock.json .
+COPY package.json ./app/
+COPY package-lock.json ./app/
+
+WORKDIR /app
 # Choose your installer; default to npm
 RUN npm ci
 
@@ -12,7 +13,7 @@ RUN npm ci
 COPY . .
 # Vite typically outputs to /dist; CRA to /build
 # Override with: --build-arg BUILD_DIR=dist
-ARG BUILD_DIR=dist
+ENV BUILD_PATH=dist
 RUN npm run build
 
 # ---- runtime stage ----
